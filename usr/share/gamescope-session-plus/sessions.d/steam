@@ -104,8 +104,10 @@ touch "${HOME}"/.steam/root/config/SteamAppData.vdf || true
 
 if [[ -f "/etc/first-boot/bootstraplinux_ubuntu12_32.tar.xz" ]] && ! grep -q "set_bootstrap=1" "$STEAM_BOOTSTRAP_CONFIG"; then
     mkdir -p ~/.local/share/Steam
+    touch ~/.local/share/Steam/.cef-enable-remote-debugging
     tar xf /etc/first-boot/bootstraplinux_ubuntu12_32.tar.xz -C ~/.local/share/Steam
     echo "set_bootstrap=1" >> "$STEAM_BOOTSTRAP_CONFIG"
+    export CLIENTCMD="steam -gamepadui -steamos3 -steampal -steamdeck -noverifyfiles -nobootstrapupdate -skipinitialbootstrap"
 fi
 
 # If we have steam_notif_daemon binary start it
