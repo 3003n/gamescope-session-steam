@@ -24,6 +24,8 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# shellcheck disable=SC2009
+ps -ef | grep -v grep | grep "steamdeck" | grep "steamos" | grep "nobootstrapupdate" >/dev/null && exit 0
 
 if command -v frzr-deploy > /dev/null; then
 	if [ -n "$CHECK" ]; then
