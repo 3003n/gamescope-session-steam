@@ -110,6 +110,10 @@ if [[ -f "/etc/first-boot/bootstraplinux_ubuntu12_32.tar.xz" ]] && ! grep -q "se
     export CLIENTCMD="steam -gamepadui -steamos3 -steampal -steamdeck -noverifyfiles -nobootstrapupdate -skipinitialbootstrap"
 fi
 
+if [[ ! -f "${HOME}/.steam/root/config/loginusers.vdf" ]] || ! grep -q "AccountName" "${HOME}/.steam/root/config/loginusers.vdf"; then
+    export CLIENTCMD="steam -gamepadui -steamos3 -steampal -steamdeck -noverifyfiles -nobootstrapupdate -skipinitialbootstrap"
+fi
+
 # If we have steam_notif_daemon binary start it
 if command -v steam_notif_daemon > /dev/null; then
     steam_notif_daemon &
